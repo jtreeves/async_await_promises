@@ -83,11 +83,37 @@
 
 // conditional promise
 
-const conditionalPromise = new Promise(function(resolve, reject) {
-    if (2**3 === 3**2) {
-        reject();
+// const conditionalPromise = new Promise(function(resolve, reject) {
+//     if (2**3 === 3**2) {
+//         reject();
+//     } else {
+//         resolve();
+//     }
+// })
+// console.log(conditionalPromise);
+
+const conditionalPromise = (condition) => new Promise(function(resolve, reject) {
+    if (condition % 2 === 0) {
+        resolve(`${condition} is even`);
     } else {
-        resolve();
-    }
-})
-console.log(conditionalPromise);
+        reject(`${condition} is not even`);
+    };
+});
+console.log(conditionalPromise(4));
+console.log(conditionalPromise(5));
+
+// function myFetch(url) {
+//     const myPromise = new Promise(function(resolve, reject) {
+//         const webData = somehowGetWebData();
+//         if (webData.statusCode < 400) {
+//             resolve();
+//         } else {
+//             reject();
+//         }
+//     });
+//     return myPromise;
+// };
+// myFetch('some-url.com');
+
+// // Since the above was a promise, it is a candidate to attach a .then or a .catch:
+// myFetch('some-url.com').then(...).catch(...);
